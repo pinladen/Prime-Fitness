@@ -1,0 +1,41 @@
+CREATE DATABASE sports;
+
+USE sports;
+
+ALTER DATABASE sports
+DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+CREATE TABLE category(
+	categoryid INT (11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	namecategory varchar(100) NOT NULL,
+	status TINYINT(1) NOT NULL DEFAULT 1
+);
+
+CREATE TABLE post(
+	newID INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	title varchar(100) NOT NULL,
+	author varchar(200) NOT NULL,
+	categoryid INT(11) NOT NULL,
+	intro text  NOT NULL,
+	content text ,
+	image varchar(200) NOT NULL,
+	date int(10) NOT NULL ,
+	status TINYINT(1) NOT NULL DEFAULT 1,
+	FOREIGN KEY (categoryid) REFERENCES category(categoryid)
+);
+
+CREATE TABLE user(
+	usesid int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	username varchar(100) NOT NULL,
+	name varchar(100) NOT NULL,
+	lastname varchar(100) NOT NULL,
+	pass text NOT NULL,
+	admin TINYINT(1) NULL DEFAULT 0
+
+);
+
+
+
+INSERT INTO category(namecategory) VALUES('cycling');
+INSERT INTO category(namecategory) VALUES('swimming');
+INSERT INTO category(namecategory) VALUES('fitness');
